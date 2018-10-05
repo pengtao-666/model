@@ -1,38 +1,33 @@
 var img="img/bb.jpg"
-var i=0;
-var alter=document.getElementById("alter")
-alter.onclick=function (){
-    if(i==0){
-        img="img/aa.png";
-        i=1;
-    }else if(i==1){
-        img="img/aa.jpg";
-        i=2;
-    }else if(i==2){
-        img="img/bb.jpg"
-        i=3;
-    }else if(i==3){
-        img="img/cc.jpg"
-        i=0;
-    }
-
+var student=[
+    "img/aa.png",
+    "img/aa.jpg",
+    "img/bb.jpg",
+    "img/cc.jpg"
+]
+var model=document.getElementById("model");
+$(".chartlet li").click(function (){
+    let a=$(".chartlet li").index(this)
+    img=student[a]
     initModel()
-}
+})
+var ww=model.clientWidth;
+var wh=model.clientHeight;
 //渲染器
 var renderer;
 function initRender() {
     renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(ww, wh);
     //告诉渲染器需要阴影效果
     renderer.setClearColor(0xffffff);
-    document.body.appendChild(renderer.domElement);
+    model.appendChild(renderer.domElement);
 }
 //相机
 var camera;
 function initCamera() {
-    camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera = new THREE.PerspectiveCamera(100, ww / wh, 0.1, 1000);
     //设置相机视点
-    camera.position.set(0, 50, 80);
+    camera.position.set(0, 43, 90);
     //设置相机的朝向
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 }
@@ -99,10 +94,10 @@ function render() {
 
 //窗口变动触发的函数
 function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = ww / wh;
     camera.updateProjectionMatrix();
     render();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(ww, wh);
 }
 function animate() {
     //更新控制器
