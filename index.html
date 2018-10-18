@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="css/flexible.css">
+    <!-- <link rel="stylesheet" href="css/flexible.css"> -->
     <style type="text/css">
         *{
             margin: 0;
@@ -53,10 +53,10 @@
     </style>
 </head>
 
-<body onload="draw();">
-    <div id="model">
+<body >
+    <div id="model" style="width: 100px;height:100px;background:blue;">
     </div>
-    <div class="chartlet">
+    <!-- <div class="chartlet">
         <h3>选择面料</h3>
         <ul>
             <li><img src="img/aa.png"></li>
@@ -64,12 +64,25 @@
             <li><img src="img/bb.jpg"></li>
             <li><img src="img/cc.jpg"></li>
         </ul>
-    </div>
+    </div> -->
 </body>
 <script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/flexible.js"></script>
+<!-- <script src="js/flexible.js"></script>
 <script src="js/three.min.js"></script>
 <script src="js/OBJLoader.js"></script>
 <script src="js/OrbitControls.js"></script>
-<script src="js/model.js"></script>
+<script src="js/model.js"></script> -->
+<script>
+    var move_div = document.getElementById("model");
+    move_div.addEventListener('touchstart',function(event){
+        if(event.touches.length==1){
+            // event.preventDefault();
+        }
+        move_div.addEventListener('touchmove',function(ev){
+            alert(1);
+            console.log(ev)
+        })
+    console.log(1)
+    })
+</script>
 </html>
